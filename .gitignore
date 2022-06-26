@@ -17,5 +17,6 @@ yarn-error.log
 /access.log
 /error.log
 /storage/logs
-/docker/mssql/data
+/docker/postgres/data
 /tests/test.json
+
