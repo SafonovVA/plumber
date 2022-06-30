@@ -5,22 +5,26 @@ ifneq ("$(wildcard ./.env)","")
 endif
 
 dc = docker-compose -f docker-compose.yml -f docker-compose.test.yml
-test_php = docker exec -i test_php
+php = docker exec -i $(APP_NAME)_php
 npm = docker run --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node npm --loglevel=warn
 
 include ${env}
 export
+
+.PHONY: check
+check:
+	echo $(APP_NAME)_php;
 
 .PHONY: build
 build:
 	cp ./.env.docker ./.env
 	${dc} build
 	${dc} up -d --remove-orphans
-	${test_php} composer install --ignore-platform-reqs --no-interaction
-	${test_php} php artisan key:generate
-	${test_php} php artisan migrate:fresh --seed
-	${test_php} php artisan storage:link
-	${test_php} php artisan optimize:clear
+	${php} composer install --ignore-platform-reqs --no-interaction
+	${php} php artisan key:generate
+	${php} php artisan migrate:fresh --seed
+	${php} php artisan storage:link
+	${php} php artisan optimize:clear
 
 .PHONY: up
 up:
@@ -44,12 +48,12 @@ restart:
 .PHONY: composer-update
 composer-update:
 	${dc} up -d
-	${test_php} composer update --ignore-platform-reqs --no-interaction
+	${php} composer update --ignore-platform-reqs --no-interaction
 
 .PHONY: composer-install
 composer-install:
 	${dc} up -d
-	${test_php} composer install --ignore-platform-reqs --no-interaction
+	${php} composer install --ignore-platform-reqs --no-interaction
 
 .PHONY: npm-install
 npm-install:
@@ -60,12 +64,12 @@ npm-install:
 .PHONY: db-update
 db-update:
 	${dc} up -d
-	${test_php} php artisan migrate:fresh --seed
+	${php} php artisan migrate:fresh --seed
 
 .PHONY: test
 test:
-	${test_php} php artisan test --stop-on-failure
+	${php} php artisan test --stop-on-failure
 
 .PHONY: optimize-clear
 optimize-clear:
-	${test_php} php artisan optimize:clear
+	${php} php artisan optimize:clear

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Voyager;
+namespace Database\Seeders\VoyagerBase;
 
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Category;

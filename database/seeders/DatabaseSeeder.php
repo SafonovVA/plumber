@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Database\Seeders\Voyager\VoyagerDatabaseSeeder;
+use Database\Seeders\VoyagerBase\VoyagerDatabaseSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
