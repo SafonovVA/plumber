@@ -4,16 +4,12 @@ ifneq ("$(wildcard ./.env)","")
     env = ./.env
 endif
 
-dc = docker-compose -f docker-compose.yml -f docker-compose.test.yml
+dc = docker-compose -f docker-compose.yml -f docker-compose.override.yml
 php = docker exec -i $(APP_NAME)_php
 npm = docker run --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node npm --loglevel=warn
 
 include ${env}
 export
-
-.PHONY: check
-check:
-	echo $(APP_NAME)_php;
 
 .PHONY: build
 build:

@@ -1,0 +1,3 @@
+GET http://localhost:82/api/user
+Accept: application/json
+Authorization: Bearer 22|w2lXGEUU3Ttq5Ou8FjkzzJcuGW0hoAF76dQL0Zuu

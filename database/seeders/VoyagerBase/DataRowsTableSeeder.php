@@ -14,6 +14,7 @@ class DataRowsTableSeeder extends Seeder
     public function run(): void
     {
         $userDataType = DataType::where('slug', 'users')->firstOrFail();
+        $serviceDataType = DataType::where('slug', 'services')->firstOrFail();
         $menuDataType = DataType::where('slug', 'menus')->firstOrFail();
         $roleDataType = DataType::where('slug', 'roles')->firstOrFail();
 
@@ -203,6 +204,36 @@ class DataRowsTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($serviceDataType, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type' => 'number',
+                'display_name' => __('voyager::seeders.data_rows.id'),
+                'required' => 1,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
+                'order' => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($serviceDataType, 'name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type' => 'text',
+                'display_name' => __('voyager::seeders.data_rows.name'),
+                'required' => 1,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'order' => 2,
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($menuDataType, 'id');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -357,10 +388,9 @@ class DataRowsTableSeeder extends Seeder
     /**
      * [dataRow description].
      *
-     * @param [type] $type  [description]
-     * @param [type] $field [description]
-     *
-     * @return [type] [description]
+     * @param $type
+     * @param $field
+     * @return mixed [type] [description]
      */
     protected function dataRow($type, $field)
     {

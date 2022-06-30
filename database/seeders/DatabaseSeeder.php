@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Service;
 use App\Models\User;
 use Database\Seeders\VoyagerBase\VoyagerDatabaseSeeder;
 use Illuminate\Database\Seeder;
@@ -22,5 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'role_id' => 1
         ]);
+
+        Service::factory()->create();
     }
 }
