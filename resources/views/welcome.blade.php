@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -128,5 +129,16 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                window.axios.get('http://localhost:82/api/user', {
+                    headers: {
+                        Authorization: 'Bearer 15|V0snUFgjaV7DT0CdlgdXzdOv05yDLK7pN6ySLyTn'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                });
+            });
+        </script>
     </body>
 </html>

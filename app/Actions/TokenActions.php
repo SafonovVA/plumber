@@ -9,12 +9,12 @@ class TokenActions extends AbstractAction
 {
     public function getTitle(): string
     {
-        return 'Token';
+        return 'Tokens';
     }
 
     public function getIcon(): string
     {
-        return 'voyager-eye';
+        return 'voyager-plug';
     }
 
     public function getPolicy(): string
@@ -26,7 +26,7 @@ class TokenActions extends AbstractAction
     public function getAttributes(): array
     {
         return [
-            'class' => 'btn btn-sm btn-primary pull-right',
+            'class' => 'btn btn-sm btn-dark pull-right',
             'style' => 'margin-right: 5px;'
         ];
     }

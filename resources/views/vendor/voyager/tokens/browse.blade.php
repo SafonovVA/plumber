@@ -1,6 +1,8 @@
 @extends('voyager::master')
 
 @php
+    /** @var \App\Models\Service $service */
+    /** @var \Illuminate\Support\Collection<\Laravel\Sanctum\PersonalAccessToken> */
     $tokens = $service->tokens;
 @endphp
 
@@ -15,10 +17,11 @@
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create_modal">
             <i class="voyager-plus"></i> <span>Add New</span>
         </button>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#revoke_all_modal">
-            <i class="voyager-trash"></i> <span>Revoke all</span>
-        </button>
-
+        @if (count($tokens) !== 0)
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#revoke_all_modal">
+                <i class="voyager-trash"></i> <span>Revoke all</span>
+            </button>
+        @endif
     </div>
 @stop
 
@@ -34,7 +37,7 @@
                             <div class="input-group">
                                 <input type="text" id="token_value" class="form-control"
                                        value="{{ session()->get('token') }}" aria-describedby="copy-addon" readonly>
-                                <span class="btn btn-info btn-sm input-group-addon" id="copy-addon"
+                                <span class="input-group-addon" id="copy-addon"
                                       title="Copy" data-toggle="tooltip" data-placement="top">
                                     <i class="voyager-documentation"></i>
                                 </span>
@@ -65,7 +68,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         @foreach($attributes as $attribute)
                                             <td>
-                                                {{ is_array($token[$attribute]) ? implode(' ,', $token[$attribute]) : $token[$attribute] }}
+                                                {{ is_array($token->{$attribute}) ? implode(', ', $token->{$attribute}) : $token->{$attribute} }}
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
@@ -92,58 +95,10 @@
     </div>
 
     {{--Create token--}}
-    <div class="modal modal-success fade" tabindex="-1" id="create_modal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title"> Generating new token</h4>
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('voyager.services.tokens.store', ['service' => $service]) }}"
-                          id="create_form" method="POST">
-                        <div class="form-group">
-                            <label for="token_name">Token name</label>
-                            <input type="text" id="token_name" name="name" class="form-control"
-                                   placeholder="token name">
-                        </div>
-                        @csrf
-                        <input type="submit" class="btn btn-success pull-right delete-confirm" value="Generate">
-                    </form>
-                    <button type="button" class="btn btn-default pull-right"
-                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('vendor.voyager.tokens._create_token_modal', compact('service'))
 
     {{--Revoke all tokens--}}
-    <div class="modal modal-danger fade" tabindex="-1" id="revoke_all_modal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Revoking all tokens</h4>
-                </div>
-                <div class="modal-body">
-                    Are you sure to revoke all tokens of "{{ $service->name }}"?
-                </div>
-                <div class="modal-footer">
-                    <form action="{{ route('voyager.services.tokens.revoke_all', ['service' => $service]) }}"
-                          id="delete_form" method="POST">
-                        @csrf
-                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="Revoke all">
-                    </form>
-                    <button type="button" class="btn btn-default pull-right"
-                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('vendor.voyager.tokens._revoke_all_tokens_modal', compact('service'))
 @stop
 
 @section('javascript')
@@ -155,6 +110,14 @@
                     toastr['info']('Token copied');
                 });
             }
+
+            document.getElementById('add-ability').addEventListener('click', function (e) {
+                e.target.parentNode.insertAdjacentHTML('beforeend', `@include('vendor.voyager.tokens._ability_input')`);
+                Array.from(document.querySelectorAll('.remove-ability')).pop()
+                    .addEventListener('click', event => event.target.parentNode.parentNode.remove());
+            });
+
+
         });
 
         $(function () {
