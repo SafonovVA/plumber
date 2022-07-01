@@ -33,7 +33,7 @@ class DataTypesTableSeeder extends Seeder
                 'name' => 'services',
                 'display_name_singular' => 'Service',
                 'display_name_plural' => 'Services',
-                'icon' => 'voyager-person',
+                'icon' => 'voyager-company',
                 'model_name' => 'App\\Models\\Service',
                 'generate_permissions' => 1,
                 'description' => '',
