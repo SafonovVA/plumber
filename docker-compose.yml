@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 services:
     php:
         build:
@@ -27,17 +27,12 @@ services:
             - ./:/var/www
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         working_dir: /var/www
-        ports:
-            - "80:80"
-            - "443:443"
         networks:
             - test
     pgsql:
         container_name: ${APP_NAME}_pgsql
         image: postgres
         restart: unless-stopped
-        ports:
-            - "5432:5432"
         environment:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_USER: ${DB_USERNAME}

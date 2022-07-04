@@ -5,8 +5,9 @@ ifneq ("$(wildcard ./.env)","")
 endif
 
 dc = docker-compose -f docker-compose.yml -f docker-compose.override.yml
-php = docker exec -i $(APP_NAME)_php
-npm = docker run --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node npm --loglevel=warn
+app_run = ${dc} up -d --remove-orphans
+php_container = docker exec -i $(APP_NAME)_php
+npm = docker run --rm --name $(APP_NAME)_npm --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node npm --loglevel=warn
 
 include ${env}
 export
@@ -15,22 +16,22 @@ export
 build:
 	cp ./.env.docker ./.env
 	${dc} build
-	${dc} up -d --remove-orphans
-	${php} composer install --ignore-platform-reqs --no-interaction
-	${php} php artisan key:generate
-	${php} php artisan migrate:fresh --seed
-	${php} php artisan storage:link
-	${php} php artisan optimize:clear
+	${app_run}
+	${php_container} composer install --ignore-platform-reqs --no-interaction
+	${php_container} php artisan key:generate
+	${php_container} php artisan migrate:fresh --seed
+	${php_container} php artisan storage:link
+	${php_container} php artisan optimize:clear
 
 .PHONY: up
 up:
-	${dc} up -d
+	${app_run}
 
 .PHONY: rebuild
 rebuild:
 	${dc} down
 	${dc} build
-	${dc} up -d --remove-orphans
+	${app_run}
 
 .PHONY: down
 down:
@@ -39,33 +40,39 @@ down:
 .PHONY: restart
 restart:
 	${dc} down
-	${dc} up -d --remove-orphans
+	${app_run}
 
 .PHONY: composer-update
 composer-update:
-	${dc} up -d
-	${php} composer update --ignore-platform-reqs --no-interaction
+	${app_run}
+	${php_container} composer update --ignore-platform-reqs --no-interaction
 
 .PHONY: composer-install
 composer-install:
-	${dc} up -d
-	${php} composer install --ignore-platform-reqs --no-interaction
+	${app_run}
+	${php_container} composer install --ignore-platform-reqs --no-interaction
 
-.PHONY: npm-install
-npm-install:
-	${dc} up -d
-	${npm} install --loglevel=warn
-	${npm} run dev --loglevel=warn
+.PHONY: npm-run-dev
+npm-run-dev:
+	${app_run}
+	${npm} install
+	${npm} run dev
+
+.PHONY: npm-run-build
+npm-run-build:
+	${app_run}
+	${npm} install
+	${npm} run build
 
 .PHONY: db-update
 db-update:
-	${dc} up -d
-	${php} php artisan migrate:fresh --seed
+	${app_run}
+	${php_container} php artisan migrate:fresh --seed
 
 .PHONY: test
 test:
-	${php} php artisan test --stop-on-failure
+	${php_container} php artisan test --stop-on-failure
 
 .PHONY: optimize-clear
 optimize-clear:
-	${php} php artisan optimize:clear
+	${php_container} php artisan optimize:clear

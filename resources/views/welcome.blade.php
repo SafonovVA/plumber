@@ -129,16 +129,5 @@
                 </div>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                window.axios.get('http://localhost:82/api/user', {
-                    headers: {
-                        Authorization: 'Bearer 15|V0snUFgjaV7DT0CdlgdXzdOv05yDLK7pN6ySLyTn'
-                    }
-                }).then(function (response) {
-                    console.log(response);
-                });
-            });
-        </script>
     </body>
 </html>

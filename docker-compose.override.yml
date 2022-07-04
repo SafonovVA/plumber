@@ -1,9 +1,9 @@
-version: '3'
+version: '3.4'
 services:
-  nginx:
-    ports:
-      - "82:80"
-      - "444:443"
-  pgsql:
-    ports:
-      - "5433:5432"
+    nginx:
+        ports:
+            - "82:80"
+            - "444:443"
+    pgsql:
+        ports:
+            - "5433:5432"
