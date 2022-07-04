@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Actions\TokenActions;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
 
@@ -24,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Voyager::addAction(\App\Actions\TokenActions::class);
+        Voyager::addAction(TokenActions::class);
     }
 }

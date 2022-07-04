@@ -36,7 +36,7 @@ class TokenActions extends AbstractAction
         return route('voyager.'.$this->dataType->slug.'.tokens.index', $this->data->{$this->data->getKeyName()});
     }
 
-    public function shouldActionDisplayOnDataType(): string
+    public function shouldActionDisplayOnDataType(): bool
     {
         return $this->dataType->slug === 'services';
     }

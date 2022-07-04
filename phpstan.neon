@@ -9,6 +9,9 @@ parameters:
     # The level 9 is the highest level
     level: 6
 
+    ignoreErrors:
+            - '#Attribute class JetBrains\\PhpStorm\\ArrayShape does not exist.#'
+
     excludePaths:
         - ./*/*/FileToBeExcluded.php
 

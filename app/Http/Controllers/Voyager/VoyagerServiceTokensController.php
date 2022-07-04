@@ -20,11 +20,13 @@ class VoyagerServiceTokensController extends Controller
 
     public function revoke(Service $service, PersonalAccessToken $token): RedirectResponse
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         $service->tokens()->where('id', $token->id)->delete();
 
         return back();
     }
 
+    /** @noinspection PhpUnused */
     public function revokeAll(Service $service): RedirectResponse
     {
         $service->tokens()->delete();
