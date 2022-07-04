@@ -19,4 +19,5 @@ yarn-error.log
 /storage/logs
 /docker/postgres/data
 /tests/test.json
+public/build
 
