@@ -14,7 +14,7 @@ RUN rm -f /etc/localtime \
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod uga+x /usr/local/bin/install-php-extensions \
     && sync \
-    && install-php-extensions gd intl soap zip bcmath xmlrpc pcntl pdo_pgsql pgsql
+    && install-php-extensions gd intl soap zip bcmath xmlrpc pcntl exif pdo_pgsql pgsql
 
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \

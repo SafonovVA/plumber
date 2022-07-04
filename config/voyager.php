@@ -80,7 +80,7 @@ return [
 
     'database' => [
         'tables' => [
-            'hidden' => ['migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'],
+            'hidden' => ['migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings', 'personal_access_tokens'],
         ],
         'autoload_migrations' => true,
     ],
@@ -181,9 +181,9 @@ return [
     |
     */
 
-    'primary_color' => '#22A7F0',
+    'primary_color' => '#73a832',//'#22A7F0',
 
-    'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
+    'show_dev_tips' => env('APP_ENV') === 'local', // Show development tip "How To Use:" in Menu and Settings
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
@@ -219,7 +219,7 @@ return [
     ],
 
     // Activate compass when environment is NOT local
-    'compass_in_production' => false,
+    'compass_in_production' => true,
 
     'media' => [
         // The allowed mimetypes to be uploaded through the media-manager.
