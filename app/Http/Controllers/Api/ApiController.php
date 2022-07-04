@@ -12,11 +12,11 @@ use OpenApi\Attributes as OAT;
     description: 'Test api',
     title: 'Test-Api documentation'
 )]
-#[OAT\Server(url: 'http://localhost',description: 'Container Server')]
+#[OAT\Server(url: 'http://localhost:82', description: 'Container Server')]
 abstract class ApiController extends Controller
 {
     protected function success(
-        array|stdClass|string $data = null,
+        array|object|string $data = null,
         string $message = null,
         int $code = 200
     ): JsonResponse {

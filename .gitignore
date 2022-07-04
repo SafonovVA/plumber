@@ -20,4 +20,5 @@ yarn-error.log
 /docker/postgres/data
 /tests/test.json
 public/build
+.php-cs-fixer.cache
 
