@@ -21,4 +21,5 @@ yarn-error.log
 /tests/test.json
 public/build
 .php-cs-fixer.cache
+/docker/mssql/data
 

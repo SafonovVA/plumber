@@ -41,6 +41,21 @@ services:
             - ./docker/postgres/data:/var/lib/postgresql/data
         networks:
             - test
+#    mssql:
+#        build:
+#            context: docker/mssql
+#        restart: unless-stopped
+#        container_name: ${APP_NAME}_mssql
+#        user: root
+#        ports:
+#            - '${FORWARD_DB_PORT:-1433}:1433'
+#        environment:
+#            SA_PASSWORD: "Pass1234"
+#            ACCEPT_EULA: "Y"
+#        volumes:
+#            - './docker/mssql/data:/var/opt/mssql/data'
+#        networks:
+#            - test
 networks:
     test:
         driver: bridge

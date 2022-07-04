@@ -28,3 +28,5 @@ composer larastan
 ```bash
 composer cs-fix
 ```
+### Docker support
+Look at `Makefile`
