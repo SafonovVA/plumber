@@ -1,5 +1,14 @@
 # Laravel Template
 
+### Starting
+```bash
+php artisan migrate --seed
+```
+or using docker
+```bash
+make build
+```
+
 ### Dependencies
 1. PHP
     - [darkaonline/l5-swagger](https://github.com/DarkaOnLine/L5-Swagger) - OpenApi or Swagger Specification for your project
