@@ -22,6 +22,9 @@ build:
 	${php_container} php artisan migrate:fresh --seed
 	${php_container} php artisan storage:link
 	${php_container} php artisan optimize:clear
+	${npm} install
+	${npm} run build
+	echo "Build completed."
 
 .PHONY: up
 up:
