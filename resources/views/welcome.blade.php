@@ -39,8 +39,8 @@
 <!-- Masthead-->
 <header class="masthead" style="background-image: url('{{ asset($images['header-bg'] ?? '') }}');">
     <div class="container">
-        <div class="masthead-subheading">{{ $contents['welcome'] }}</div>
-        <div class="masthead-heading text-uppercase">{{ $contents['welcome-master'] }}</div>
+        <div class="masthead-subheading">{{ $contents['welcome'] ?? '' }}</div>
+        <div class="masthead-heading text-uppercase">{{ $contents['welcome-master'] ?? '' }}</div>
         <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
     </div>
 </header>
