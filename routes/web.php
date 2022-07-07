@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $images = \App\Models\Image::all()->pluck('path', 'name')->map(fn ($image) => 'storage/' . $image);
+    $contents = \App\Models\Content::all()->pluck('text', 'name');
 
-    return view('welcome', compact('images'));
+    return view('welcome', compact('images', 'contents'));
 });
 
 Route::group(['prefix' => 'admin'], function () {

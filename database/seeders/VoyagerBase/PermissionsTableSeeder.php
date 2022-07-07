@@ -31,6 +31,8 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('services');
 
+        Permission::generateFor('contents');
+
         Permission::generateFor('images');
 
         Permission::generateFor('roles');
