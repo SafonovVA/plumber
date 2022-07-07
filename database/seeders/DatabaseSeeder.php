@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(VoyagerDatabaseSeeder::class);
 
-        User::factory()->create([
+        User::whereName('admin')->updateOrCreate([
             'name' => 'admin',
             'email' => 'admin@example.com',
             'role_id' => 1

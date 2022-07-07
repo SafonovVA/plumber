@@ -4,7 +4,9 @@ use App\Http\Controllers\Voyager\VoyagerServiceTokensController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $images = \App\Models\Image::all()->pluck('path', 'name')->map(fn ($image) => 'storage/' . $image);
+
+    return view('welcome', compact('images'));
 });
 
 Route::group(['prefix' => 'admin'], function () {

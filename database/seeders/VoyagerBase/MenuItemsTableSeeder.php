@@ -83,6 +83,22 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
+            'title' => 'Изображения',
+            'url' => '',
+            'route' => 'voyager.images.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target' => '_self',
+                'icon_class' => 'voyager-images',
+                'color' => null,
+                'parent_id' => null,
+                'order' => 3,
+            ])->save();
+        }
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
             'title' => 'Swagger',
             'url' => '',
             'route' => 'l5-swagger.default.api',

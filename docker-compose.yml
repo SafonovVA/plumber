@@ -15,7 +15,7 @@ services:
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         working_dir: /var/www
         networks:
-            - test
+            - network
     nginx:
         image: nginx:alpine
         container_name: ${APP_NAME}_nginx
@@ -28,7 +28,7 @@ services:
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         working_dir: /var/www
         networks:
-            - test
+            - network
     pgsql:
         container_name: ${APP_NAME}_pgsql
         image: postgres
@@ -40,7 +40,7 @@ services:
         volumes:
             - ./docker/postgres/data:/var/lib/postgresql/data
         networks:
-            - test
+            - network
 #    mssql:
 #        build:
 #            context: docker/mssql
@@ -55,7 +55,7 @@ services:
 #        volumes:
 #            - './docker/mssql/data:/var/opt/mssql/data'
 #        networks:
-#            - test
+#            - network
 networks:
-    test:
+    network:
         driver: bridge
