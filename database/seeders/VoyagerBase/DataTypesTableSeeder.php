@@ -30,7 +30,7 @@ class DataTypesTableSeeder extends Seeder
         $dataType = $this->dataType('slug', 'images');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name' => 'users',
+                'name' => 'images',
                 'display_name_singular' => 'Изображение',
                 'display_name_plural' => 'Изображения',
                 'icon' => 'voyager-images',
