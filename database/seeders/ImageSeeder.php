@@ -11,7 +11,7 @@ class ImageSeeder extends Seeder
     {
         $images = [
             [
-                'ame' => 'navbar-logo',
+                'name' => 'navbar-logo',
                 'path' => 'images/July2022/0w9A5I420KRYkJyKXHsi.png'
             ],
             [
