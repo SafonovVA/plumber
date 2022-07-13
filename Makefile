@@ -8,13 +8,14 @@ dc = docker-compose -f docker-compose.yml -f docker-compose.override.yml
 app_run = ${dc} up -d --remove-orphans
 app_stop = ${dc} down --remove-orphans
 php_container = docker exec -i $(APP_NAME)_php
-npm = docker run --rm --name $(APP_NAME)_npm --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node npm --loglevel=warn
+npm = docker run --rm --name $(APP_NAME)_npm --workdir /var/www --mount type=bind,source=${shell pwd},target=/var/www node:18-alpine npm --loglevel=warn
 
 include ${env}
 export
 
 .PHONY: build
 build:
+	${app_stop}
 	cp ./.env.docker ./.env
 	${dc} build
 	${app_run}

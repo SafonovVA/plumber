@@ -38,24 +38,12 @@ services:
             POSTGRES_USER: ${DB_USERNAME}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
         volumes:
-            - ./docker/postgres/data:/var/lib/postgresql/data
+            - pgsql-volume:/var/lib/postgresql/data
         networks:
             - network
-#    mssql:
-#        build:
-#            context: docker/mssql
-#        restart: unless-stopped
-#        container_name: ${APP_NAME}_mssql
-#        user: root
-#        ports:
-#            - '${FORWARD_DB_PORT:-1433}:1433'
-#        environment:
-#            SA_PASSWORD: "Pass1234"
-#            ACCEPT_EULA: "Y"
-#        volumes:
-#            - './docker/mssql/data:/var/opt/mssql/data'
-#        networks:
-#            - network
 networks:
     network:
         driver: bridge
+volumes:
+    pgsql-volume:
+        driver: local
