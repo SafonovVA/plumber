@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Service::factory()->create();
+        $this->call(ImageSeeder::class);
     }
 }

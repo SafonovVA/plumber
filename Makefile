@@ -26,6 +26,7 @@ build:
 	${php_container} php artisan optimize:clear
 	${npm} install
 	${npm} run build
+	${php_container} chmod -R 0777 storage bootstrap/cache
 	echo "Build completed."
 
 .PHONY: up
