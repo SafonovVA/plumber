@@ -27,8 +27,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">{{ $contents['services-master'] }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="#portfolio">{{ $contents['portfolio'] }}</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -48,8 +48,8 @@
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Services</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase">{{ $contents['services-master'] }}</h2>
+            <h3 class="section-subheading text-muted">{{ $contents['services'] }}</h3>
         </div>
         <div class="row text-center">
             <div class="col-md-4">
@@ -57,24 +57,24 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">E-Commerce</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">{{ $contents['service-1-master'] }}</h4>
+                <p class="text-muted">{{ $contents['service-1'] }}</p>
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">{{ $contents['service-2-master'] }}</h4>
+                <p class="text-muted">{{ $contents['service-2'] }}</p>
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
-                <h4 class="my-3">Web Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3">{{ $contents['service-3-master'] }}</h4>
+                <p class="text-muted">{{ $contents['service-3'] }}</p>
             </div>
         </div>
     </div>
@@ -83,8 +83,8 @@
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Portfolio</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase">{{ $contents['portfolio-master'] }}</h2>
+            <h3 class="section-subheading text-muted">{{ $contents['portfolio'] }}</h3>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
@@ -97,8 +97,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-1'] ?? '') }}" alt="portfolio-1" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Threads</div>
-                        <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-1-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-1'] }}</div>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-2'] ?? '') }}" alt="portfolio-2" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Explore</div>
-                        <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-2-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-2'] }}</div>
                     </div>
                 </div>
             </div>
@@ -127,8 +127,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-3'] ?? '') }}" alt="portfolio-3" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Finish</div>
-                        <div class="portfolio-caption-subheading text-muted">Identity</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-3-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-3'] }}</div>
                     </div>
                 </div>
             </div>
@@ -142,8 +142,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-4'] ?? '') }}" alt="portfolio-4" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Lines</div>
-                        <div class="portfolio-caption-subheading text-muted">Branding</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-4-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-4'] }}</div>
                     </div>
                 </div>
             </div>
@@ -157,8 +157,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-5'] ?? '') }}" alt="portfolio-5" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Southwest</div>
-                        <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-5-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-5'] }}</div>
                     </div>
                 </div>
             </div>
@@ -172,8 +172,8 @@
                         <img class="img-fluid" src="{{ asset($images['portfolio-6'] ?? '') }}" alt="portfolio-6" />
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Window</div>
-                        <div class="portfolio-caption-subheading text-muted">Photography</div>
+                        <div class="portfolio-caption-heading">{{ $contents['portfolio-6-master'] }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ $contents['portfolio-6'] }}</div>
                     </div>
                 </div>
             </div>
@@ -463,7 +463,7 @@
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{ asset($images['close-icon'] ?? '') }}" alt="close-icon" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{ asset($images['close-icon'] ?? '') }}" width="30" height="30" alt="close-icon" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">

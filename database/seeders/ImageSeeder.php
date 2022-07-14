@@ -20,7 +20,7 @@ class ImageSeeder extends Seeder
             ],
             [
                 'name' => 'close-icon',
-                'path' => 'images/July2022/gXdPUZmWGse6Cu4vt6xa.png'
+                'path' => 'images/July2022/Qw1tgyO2GPDX02E9jO1B.png'
             ],
             [
                 'name' => 'map-image',
@@ -97,7 +97,10 @@ class ImageSeeder extends Seeder
         ];
 
         foreach ($images as $image) {
-            Image::create($image);
+            Image::updateOrCreate([
+                'name' => $image['name'],
+                'path' => $image['path'],
+            ]);
         }
     }
 }
